@@ -17,7 +17,7 @@ class _BottomNavState extends State<BottomNav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kConstBlueColor,
       body: SafeArea(
           child: IndexedStack(
             index: currentIndex,
@@ -29,19 +29,20 @@ class _BottomNavState extends State<BottomNav> {
           )
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: kConstBlueColor,
         showSelectedLabels: true,
         showUnselectedLabels: false,
-        selectedItemColor: kConstBlueColor,
-        unselectedItemColor: kConstBlueColor,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white,
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
+            icon: Icon(Icons.pin_drop),
+            title: Text('Explore'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
-            title: Text('Submit'),
+            title: Text('Create'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info),

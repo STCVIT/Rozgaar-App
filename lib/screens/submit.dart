@@ -111,144 +111,142 @@ class _SubmitState extends State<Submit> {
       opacity: 0.5,
       progressIndicator: SpinKitDoubleBounce(color: Colors.blue),
       child: SafeArea(
-          child: ListView.builder(
-            physics: AlwaysScrollableScrollPhysics(),
-            itemCount: 1,
-            itemBuilder: (BuildContext context, int index) => Padding(
-              padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text("Create",style: kConstHeadingStyle,),
-                  SizedBox(height: 6,),
-                  Text("One place to add all your workers",style: kConstTextStyle.copyWith(fontSize: 14),),
-                  SizedBox(height: 10,),
-                  Container(
-                    height: 350,
-                    width: 400,
-                    decoration: BoxDecoration(
-                      color: kConstBlueColor,
-                      borderRadius: BorderRadius.circular(16)
-                    ),
-                    child: Row(
-                      children: [
-                        SizedBox(width: 4,),
-                        GestureDetector(
-                          onTap: pickImage,
-                          child: Container(
-                            height: 220,
-                            width: 150,
-                            child: pickedImage == null
-                                ? Image.asset('images/sample.png',fit: BoxFit.fill,)
-                                : Image.file(
-                              pickedImage,
-                              fit: BoxFit.fill,
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            body: ListView.builder(
+              physics: AlwaysScrollableScrollPhysics(),
+              itemCount: 1,
+              itemBuilder: (BuildContext context, int index) => Padding(
+                padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Create",style: kConstHeadingStyle.copyWith(fontSize: 36),),
+                    SizedBox(height: 8,),
+                    Text("One place to add all your workers",style: kConstTextStyle.copyWith(fontSize: 14),),
+                    SizedBox(height: 10,),
+                    Container(
+                      height: 350,
+                      width: 400,
+                      decoration: BoxDecoration(
+                        color: kConstBlueColor,
+                        borderRadius: BorderRadius.circular(16)
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(width: 4,),
+                          GestureDetector(
+                            onTap: pickImage,
+                            child: Container(
+                              height: 220,
+                              width: 150,
+                              child: pickedImage == null
+                                  ? Image.asset('images/sample.png',fit: BoxFit.fill,)
+                                  : Image.file(
+                                pickedImage,
+                                fit: BoxFit.fill,
+                              ),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                    color: Colors.blue,
+                                  )),
                             ),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                  color: Colors.blue,
-                                )),
                           ),
+                          SizedBox(width: 8,),
+                          ButtonTheme(
+                              height: 40,
+                              minWidth: 200,
+                              child: FlatButton(
+                                color: kConstBlueColor,
+                                onPressed: pickedImage ==null?null:() async {
+                                  text.clear();
+                                  await readText();
+                                  if(scanError==true){
+                                    final snackBar = SnackBar(
+                                      content: Text(
+                                        'Processing Error. Kindly add a better quality image.',style: TextStyle(color: Colors.white,fontFamily: 'Eina'),
+                                      ),
+                                      backgroundColor:Colors.blue ,
+                                    );
+                                    await Scaffold.of(context).showSnackBar(snackBar);
+                                  }
+                                },
+                                child: Text(
+                                  'Generate List',
+                                  style: kConstTextStyle.copyWith(color: Colors.white,fontSize: 16),
+                                ),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6),
+                                    side: BorderSide(color: Colors.white)),
+                              )),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Text(
+                      'List of Workers :',
+                      style: kConstTextStyle.copyWith(fontWeight: FontWeight.w600),),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4),
+                      child: Container(
+                        child: text.length == 0 || scanError == true
+                            ? Text(
+                          'No list generated',
+                          style: kConstTextStyle.copyWith(fontSize: 14),
+                        )
+                            : ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: text.length,
+                          itemBuilder: (BuildContext context, int index) =>
+                                  Column(
+                                    children: [
+                                      ListTile(
+                                        leading: Icon(
+                                          Icons.person,
+                                        ),
+                                        title: Text(
+                                          getSkill(text[index]['skillIndex']),
+                                          style: kConstTextStyle),
+                                        isThreeLine: true,
+                                        subtitle: Text(text[index]['pinCode'] +
+                                            "            " +
+                                            text[index]['mobile'],style: kConstTextStyle.copyWith(color: kConstBlueColor,fontSize: 15),),
+                                      ),
+                                      Divider(color: kConstBlueColor,),
+                                    ],
+                                  ),
+                                  )
                         ),
-                        SizedBox(width: 8,),
-                        ButtonTheme(
+                      ),
+                    SizedBox(
+                      height: 32,
+                    ),
+                    Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color:  kConstBlueColor,
+                          borderRadius: BorderRadius.circular(6)
+                        ),
+                        child: ButtonTheme(
                             height: 40,
                             minWidth: 200,
                             child: FlatButton(
-                              color: kConstBlueColor,
-                              onPressed: pickedImage ==null?null:() async {
-                                text.clear();
-                                await readText();
-                                if(scanError==true){
-                                  final snackBar = SnackBar(
-                                    content: Text(
-                                      'Processing Error. Kindly add a better quality image.',style: TextStyle(color: Colors.white,fontFamily: 'Eina'),
-                                    ),
-                                    backgroundColor:Colors.blue ,
-                                  );
-                                  await Scaffold.of(context).showSnackBar(snackBar);
-                                }
-                              },
+                              onPressed: text.length == 0 || scanError==true
+                                  ? null
+                                  : (){},
                               child: Text(
-                                'Generate List',
-                                style: kConstTextStyle.copyWith(color: Colors.white,fontSize: 16),
+                                'Add Workers',
+                                style: kConstTextStyle.copyWith(color: Colors.white),
                               ),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(6),
-                                  side: BorderSide(color: Colors.white)),
                             )),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Text(
-                    'List of Workers :',
-                    style: TextStyle(
-                        color: kConstBlueColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 4),
-                    child: Container(
-                      child: text.length == 0 || scanError == true
-                          ? Text(
-                        'No list generated',
-                        style: TextStyle(fontSize: 14),
-                      )
-                          : ListView.builder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: text.length,
-                        itemBuilder: (BuildContext context, int index) =>
-                                Column(
-                                  children: [
-                                    ListTile(
-                                      leading: Icon(
-                                        Icons.person,
-                                        color: kConstBlueColor,
-                                      ),
-                                      title: Text(
-                                        getSkill(text[index]['skillIndex']),
-                                        style: kConstTextStyle.copyWith(color: kConstBlueColor),),
-                                      isThreeLine: true,
-                                      subtitle: Text(text[index]['pinCode'] +
-                                          "            " +
-                                          text[index]['mobile']),
-                                    ),
-                                    Divider(),
-                                  ],
-                                ),
-                                )
                       ),
                     ),
-                  SizedBox(
-                    height: 32,
-                  ),
-                  Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color:  kConstBlueColor,
-                        borderRadius: BorderRadius.circular(6)
-                      ),
-                      child: ButtonTheme(
-                          height: 40,
-                          minWidth: 200,
-                          child: FlatButton(
-                            onPressed: text.length == 0 || scanError==true
-                                ? null
-                                : (){},
-                            child: Text(
-                              'Add Workers',
-                              style: kConstTextStyle.copyWith(color: Colors.white),
-                            ),
-                          )),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
