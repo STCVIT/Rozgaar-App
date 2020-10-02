@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 const kConstFontFamily= "Spartan";
 
+const baseUrl='https://hackthehourglass.herokuapp.com/user';
+
 const kConstGreyColor =Color(0xffe5e5e5);
 const kConstBlueColor =Color(0xff1a73e9);
 

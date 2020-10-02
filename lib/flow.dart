@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:helloworld_app/constants.dart';
 import 'package:helloworld_app/screens/aboutUs.dart';
 import 'package:helloworld_app/screens/home.dart';
 import 'package:helloworld_app/screens/submit.dart';
@@ -16,6 +17,7 @@ class _BottomNavState extends State<BottomNav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
           child: IndexedStack(
             index: currentIndex,
@@ -29,8 +31,8 @@ class _BottomNavState extends State<BottomNav> {
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: true,
         showUnselectedLabels: false,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.blue,
+        selectedItemColor: kConstBlueColor,
+        unselectedItemColor: kConstBlueColor,
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
