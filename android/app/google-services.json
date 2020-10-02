@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "225809750415",
+    "firebase_url": "https://helloworld-4784e.firebaseio.com",
+    "project_id": "helloworld-4784e",
+    "storage_bucket": "helloworld-4784e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:225809750415:android:07c6dec4bbdba8cad213fa",
+        "android_client_info": {
+          "package_name": "vasumanhas.helloworld_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "225809750415-so2meol70n4s28gnj1lhr4rpjucftf2f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vasumanhas.helloworld_app",
+            "certificate_hash": "73ab37ad9246e961c9c64a9d431c02364bb6314f"
+          }
+        },
+        {
+          "client_id": "225809750415-dld8r8ea96ihn2c0f3t03qspfp7saut0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpXikBsFI_ETZkLQfWgU8eZl1FmSR7lG8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "225809750415-dld8r8ea96ihn2c0f3t03qspfp7saut0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
