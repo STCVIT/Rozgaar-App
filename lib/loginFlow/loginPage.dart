@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:helloworld_app/constants.dart';
 import 'package:helloworld_app/screens/home.dart';
 
 class Login extends StatefulWidget {
@@ -44,7 +46,7 @@ class _LoginState extends State<Login> {
                       borderRadius: BorderRadius.circular(6)
                   ),
                   onPressed: () async{
-                    final code1 = code.trim();
+                    final code1 = '+91'+ code.trim();
                     AuthCredential credential = PhoneAuthProvider.getCredential(verificationId: verificationId, smsCode: code1);
                     UserCredential result = await auth.signInWithCredential(credential);
                     User user = result.user;
@@ -61,18 +63,37 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextField(
-            onChanged: (val){
-              mobile=val;
-            },
-          ),
-          FlatButton(onPressed: (){
-            login(mobile);
-          }, child: Text("Login"))
-        ],
+      backgroundColor: Colors.white,
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(16,40,16,0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Log In",style: kConstHeadingStyle,),
+            SizedBox(height: 6,),
+            Text("Enter your mobile number to receive an OTP",style: kConstTextStyle.copyWith(fontSize: 14),),
+            SizedBox(height: 200,),
+            TextField(
+              onChanged: (val){
+                mobile=val;
+              },
+              decoration: kTextFieldDecoration.copyWith(hintText: "Mobile Number"),
+            ),
+            SizedBox(height: 300,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [ButtonTheme(
+                minWidth: 300,
+                height: 38,
+                child: FlatButton(onPressed: (){
+                  login(mobile);
+                }, child: Text("Login",style: kConstTextStyle.copyWith(color: Colors.white),),color: kConstBlueColor,shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)
+                ),),
+              ),]
+            )
+          ],
+        ),
       ),
     ));
   }
