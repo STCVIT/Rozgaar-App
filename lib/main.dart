@@ -4,6 +4,7 @@ import 'package:helloworld_app/flow.dart';
 import 'package:helloworld_app/loginFlow/loginPage.dart';
 import 'package:helloworld_app/loginFlow/profile.dart';
 import 'package:helloworld_app/screens/home.dart';
+import 'package:helloworld_app/splash.dart';
 
 
 Future<void> main() async{
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: BottomNav(),
+      home: SplashScreen(),
     );
   }
 }

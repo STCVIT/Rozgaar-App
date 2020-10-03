@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -26,6 +28,22 @@ class _SubmitState extends State<Submit> {
     'plumber',
     'electrician'
   ];
+  Future sendList() async {
+    Map<String, String> headers = {
+      "Content-Type": "application/json",
+    };
+    var response = await http.post('$baseUrl/worker/bulkadd',
+        headers: headers,
+        body: jsonEncode({
+          'workersInfo': text,
+        }));
+    print(response.body);
+    setState(() {
+      _isInAsyncCall=false;
+    });
+    print(response.statusCode);
+    return response.statusCode;
+  }
   Future readText() async {
     FirebaseVisionImage ourImage = FirebaseVisionImage.fromFile(pickedImage);
     TextRecognizer recognizeText = FirebaseVision.instance.textRecognizer();
@@ -180,11 +198,8 @@ class _SubmitState extends State<Submit> {
                                         final snackBar = SnackBar(
                                           content: Text(
                                             'Processing Error. Kindly add a better quality image.',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontFamily: 'Eina'),
-                                          ),
-                                          backgroundColor: Colors.blue,
+                                            style: kConstTextStyle.copyWith(color: Colors.white),),
+                                          backgroundColor: kConstBlueColor,
                                         );
                                         await Scaffold.of(context)
                                             .showSnackBar(snackBar);
@@ -242,9 +257,6 @@ class _SubmitState extends State<Submit> {
                                             fontSize: 15),
                                       ),
                                     ),
-                                    Divider(
-                                      color: kConstBlueColor,
-                                    ),
                                   ],
                                 ),
                               )),
@@ -263,7 +275,31 @@ class _SubmitState extends State<Submit> {
                           child: FlatButton(
                             onPressed: text.length == 0 || scanError == true
                                 ? null
-                                : () {},
+                                : () async{
+                              setState(() {
+                                _isInAsyncCall=true;
+                              });
+                              if(await sendList()==200){
+                                final snackBar = SnackBar(
+                                  content: Text(
+                                    'Workers have been added to our database',
+                                    style: kConstTextStyle.copyWith(color: Colors.white),),
+                                  backgroundColor: kConstBlueColor,
+                                );
+                                await Scaffold.of(context)
+                                    .showSnackBar(snackBar);
+                              }else{
+                                final snackBar = SnackBar(
+                                  content: Text(
+                                    'Error. Please try again',
+                                    style: kConstTextStyle.copyWith(color: Colors.white),),
+                                  backgroundColor: kConstBlueColor,
+                                );
+                                await Scaffold.of(context)
+                                    .showSnackBar(snackBar);
+                              }
+
+                            },
                             child: Text(
                               'Add Workers',
                               style:

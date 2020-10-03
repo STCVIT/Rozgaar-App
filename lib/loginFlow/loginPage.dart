@@ -2,8 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:helloworld_app/constants.dart';
-import 'package:helloworld_app/loginFlow/profile.dart';
-import 'package:helloworld_app/screens/home.dart';
+import 'package:helloworld_app/flow.dart';
 import 'package:http/http.dart' as http;
 
 class LogIn extends StatefulWidget {
@@ -29,8 +28,9 @@ class _LogInState extends State<LogIn> {
           UserCredential result = await auth.signInWithCredential(credential);
           User user = result.user;
           if (user != null) {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Home()));
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                builder: (context) => BottomNav()),(Route<dynamic> route) => false
+            );
           }
         },
         verificationFailed: (FirebaseAuthException e) {
@@ -69,8 +69,9 @@ class _LogInState extends State<LogIn> {
                             await auth.signInWithCredential(credential);
                         User user = result.user;
                         if (user != null) {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Home()));
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                              builder: (context) => BottomNav()),(Route<dynamic> route) => false
+                          );
                         }
                       },
                     )
