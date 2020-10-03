@@ -137,7 +137,7 @@ class _SubmitState extends State<Submit> {
                 children: <Widget>[
                   Text(
                     "Create",
-                    style: kConstHeadingStyle.copyWith(fontSize: 36),
+                    style: kConstHeadingStyle,
                   ),
                   SizedBox(
                     height: 8,
@@ -158,7 +158,7 @@ class _SubmitState extends State<Submit> {
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 4,
+                          width: 12,
                         ),
                         GestureDetector(
                           onTap: pickImage,
@@ -182,7 +182,7 @@ class _SubmitState extends State<Submit> {
                           ),
                         ),
                         SizedBox(
-                          width: 8,
+                          width: 12,
                         ),
                         ButtonTheme(
                             height: 40,
@@ -303,7 +303,7 @@ class _SubmitState extends State<Submit> {
                             child: Text(
                               'Add Workers',
                               style:
-                                  kConstTextStyle.copyWith(color: Colors.white),
+                                  kConstTextStyle.copyWith(color: Colors.white,fontSize: 16),
                             ),
                           )),
                     ),

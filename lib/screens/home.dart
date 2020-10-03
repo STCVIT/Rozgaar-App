@@ -60,7 +60,7 @@ class _HomeState extends State<Home> {
               ),
               Text(
                 "Home",
-                style: kConstHeadingStyle.copyWith(fontSize: 36),
+                style: kConstHeadingStyle,
               ),
               SizedBox(
                 height: 12,
@@ -87,7 +87,7 @@ class _HomeState extends State<Home> {
                     Text(
                       'The most searched worker is',
                       style: kConstHeadingStyle.copyWith(
-                          color: Colors.white, fontSize: 20),
+                          color: Colors.white, fontSize: 18),
                     ),
                     SizedBox(
                       height: 20,
@@ -257,8 +257,9 @@ class _HomeState extends State<Home> {
                 height: 6,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  SizedBox(width: 6,),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(

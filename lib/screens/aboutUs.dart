@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:helloworld_app/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutUs extends StatelessWidget {
+  _launchURL() async {
+    const url = 'https://www.pmcares.gov.in/en/';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      floatingActionButton: FloatingActionButton.extended(onPressed:_launchURL,label: Text('Donate to PM Cares',style: kConstTextStyle.copyWith(fontSize: 16),),backgroundColor: kConstBlueColor,shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8)
+      ),),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: ListView.builder(
         itemCount: 1,
         itemBuilder: (BuildContext context, int index) => Padding(
@@ -15,7 +28,7 @@ class AboutUs extends StatelessWidget {
             children: [
               Text(
                 "About Us",
-                style: kConstHeadingStyle.copyWith(fontSize: 36),
+                style: kConstHeadingStyle,
               ),
               SizedBox(
                 height: 8,

@@ -195,7 +195,7 @@ class _SearchResultsState extends State<SearchResults> {
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
               "Search Results",
-              style: kConstHeadingStyle.copyWith(fontSize: 36),
+              style: kConstHeadingStyle,
             ),
             SizedBox(
               height: 20,
