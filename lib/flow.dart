@@ -5,29 +5,22 @@ import 'package:helloworld_app/screens/aboutUs.dart';
 import 'package:helloworld_app/screens/home.dart';
 import 'package:helloworld_app/screens/submit.dart';
 
-
 class BottomNav extends StatefulWidget {
   @override
   _BottomNavState createState() => _BottomNavState();
 }
 
 class _BottomNavState extends State<BottomNav> {
-
-  int currentIndex=0;
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kConstBlueColor,
       body: SafeArea(
           child: IndexedStack(
-            index: currentIndex,
-            children: [
-              Home(),
-              Submit(),
-              AboutUs()
-            ],
-          )
-      ),
+        index: currentIndex,
+        children: [Home(), Submit(), AboutUs()],
+      )),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: kConstBlueColor,
         showSelectedLabels: true,
@@ -46,7 +39,9 @@ class _BottomNavState extends State<BottomNav> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info),
-            title: Text('About Us',),
+            title: Text(
+              'About Us',
+            ),
           ),
         ],
         currentIndex: currentIndex,
@@ -59,4 +54,3 @@ class _BottomNavState extends State<BottomNav> {
     );
   }
 }
-

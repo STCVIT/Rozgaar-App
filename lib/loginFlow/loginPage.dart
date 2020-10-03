@@ -30,11 +30,7 @@ class _LogInState extends State<LogIn> {
           User user = result.user;
           if (user != null) {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => GetProfile(
-                          mobile: mobile,
-                        )));
+                context, MaterialPageRoute(builder: (context) => Home()));
           }
         },
         verificationFailed: (FirebaseAuthException e) {
@@ -72,23 +68,10 @@ class _LogInState extends State<LogIn> {
                         UserCredential result =
                             await auth.signInWithCredential(credential);
                         User user = result.user;
-                          if (user != null) {
-                            Token = await user.getIdToken().then((result) {
-                              String token = result;
-                              print(token);
-                              return token;
-                            });
-                            if(getUser(Token)==200){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
-                            }
-                            else{
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => GetProfile(
-                                          mobile: code1,
-                                        )));
-                        }}
+                        if (user != null) {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Home()));
+                        }
                       },
                     )
                   ],
