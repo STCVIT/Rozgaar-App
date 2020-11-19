@@ -1,4 +1,4 @@
-<h1>Aamdani - Post Covid Employment App :construction_worker: </h1>
+<h1>Rozgar - Post Covid Employment App :construction_worker: </h1>
 
 Aamdani is a humble app that aims to bring employment to the poorest of the poor of our country who don't have Whatsapp or Linkedin to search for jobs.
 
