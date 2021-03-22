@@ -101,7 +101,7 @@ This adds the worker to the worker database and automatically finds the district
 <img src="https://i.ibb.co/Fm9f2TD/mobile.png" alt="mobile" border="0">
 </p>
 <br />
-Now the worker will be listed in the Aamdani app for being hired by a potential employer.
+Now the worker will be listed in the Rozgaar app for being hired by a potential employer.
 
 ## For Employers
 
@@ -148,7 +148,7 @@ Another challenge we faced was to integrate the ML Kit into the app. Both of us 
 
 In the command terminal, run the following commands:
 
-    $ git clone https://github.com/vasumanhas000/hourglass-app.git
+    $ git clone https://github.com/STCVIT/Rozgaar-App
     $ cd hourglass-app
     $ flutter run
 
